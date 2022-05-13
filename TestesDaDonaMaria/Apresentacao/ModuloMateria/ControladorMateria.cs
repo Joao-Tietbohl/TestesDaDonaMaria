@@ -86,8 +86,15 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
             {
                 repositorioMateria.Inserir(tela.Materia);
 
+                AtualizarDisciplina(tela.Materia);
+
                 CarregarMaterias();
             }
+        }
+
+        private void AtualizarDisciplina(Materia materia)
+        {
+            materia.Disciplina.Materias.Add(materia);
         }
 
         public override UserControl ObtemListagem()

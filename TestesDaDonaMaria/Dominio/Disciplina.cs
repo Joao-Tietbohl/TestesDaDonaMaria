@@ -4,8 +4,12 @@ namespace TestesDaDonaMaria.Dominio
 {
     public class Disciplina : EntidadeBase<Disciplina>
     {
+       
+        private List<Materia> materias = new List<Materia>();
+
+
         public string Nome { get; set; }
-        private List<Materia> Materias { get; }
+        public List<Materia> Materias { get { return materias; } }
 
         public override void Atualizar(Disciplina registro)
         {

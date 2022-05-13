@@ -39,6 +39,15 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 
             DialogResult resultado = tela.ShowDialog();
 
+            string validacao = ValidarDisciplina(tela.Disciplina);
+
+            if (validacao != "")
+            {
+                MessageBox.Show(validacao,
+                "Cadastro de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (resultado == DialogResult.OK)
             {
                 repositorioDisciplina.Editar(tela.Disciplina);
@@ -57,6 +66,15 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
                 return;
             }
 
+            string validacao = ValidarExclusao(disciplinaSelecionada);
+
+            if(validacao != "")
+            {
+                MessageBox.Show(validacao,
+                "Exclusao de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             DialogResult resultado = MessageBox.Show("Deseja realmente excluir a disciplina?",
                 "Exclusão de Disciplinas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -67,6 +85,17 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
             }
         }
 
+        private string ValidarExclusao(Disciplina disciplinaSelecionada)
+        {
+            string validacao = "";
+
+            if (disciplinaSelecionada.Materias.Count != 0)
+                validacao = "Não é possível excluir uma disciplina relacionada com " +
+                    "uma matéria";
+
+            return validacao;
+        }
+
         public override void Inserir()
         {
             TelaCadastroDisciplinaForm tela = new TelaCadastroDisciplinaForm();
@@ -74,12 +103,37 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 
             DialogResult resultado = tela.ShowDialog();
 
+            string validacao = ValidarDisciplina(tela.Disciplina);
+
+            if (validacao != "")
+            {
+                MessageBox.Show(validacao,
+                "Cadastro de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (resultado == DialogResult.OK)
             {
                 repositorioDisciplina.Inserir(tela.Disciplina);
 
                 CarregarDisciplinas();
             }
+        }
+
+        private string ValidarDisciplina(Disciplina disciplina)
+        {
+            string validacao = "";
+
+            if (disciplina.Nome == "")
+                validacao = "Disciplina deve ter nome";
+
+            foreach (Disciplina d in repositorioDisciplina.SelecionarTodos())
+            {
+                if (disciplina.Nome == d.Nome)
+                    validacao += "\nNome da disciplina deve ser único";
+            }
+            
+            return validacao;
         }
 
         private void CarregarDisciplinas()
