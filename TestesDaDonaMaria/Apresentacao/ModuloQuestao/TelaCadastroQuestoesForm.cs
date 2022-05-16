@@ -60,6 +60,10 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
                 txtEnunciado.Text = questao.Enunciado;
                 cbxMateria.SelectedItem = questao.Materia;
                 cbxDisciplina.SelectedItem = questao.Materia;
+                foreach (var a in questao.Alternativas)
+                {
+                    lbAlternativas.Items.Add(a);
+                }
             }
         }
 
@@ -110,6 +114,8 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
             {
                 alternativaCorreta = true;
                 chbAlternativaCorreta.Enabled = false;
+                chbAlternativaCorreta.Checked = false;
+                
             }
 
             if (lbAlternativas.Items.Count == 4)

@@ -9,8 +9,7 @@ namespace TestesDaDonaMaria.Dominio
     public class Questao : EntidadeBase<Questao>
     {
         public string Enunciado { get; set; }
-        public List<Alternativa> Alternativas { get; set; }
-        public string Bimestre { get; set; }
+        public List<Alternativa> Alternativas { get; set; }     
         public Materia Materia { get; set; }
 
         public Questao()
@@ -26,7 +25,7 @@ namespace TestesDaDonaMaria.Dominio
 
         public override string ToString()
         {
-            return $"Enunciado: {Enunciado}, Bimestre: {Bimestre}, Materia: {Materia.Titulo}";
+            return $"Enunciado: {Enunciado}, Materia: {Materia.Titulo}";
         }
 
     }

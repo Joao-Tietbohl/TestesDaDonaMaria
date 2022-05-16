@@ -132,6 +132,7 @@
             this.cbxDisciplina.Name = "cbxDisciplina";
             this.cbxDisciplina.Size = new System.Drawing.Size(159, 23);
             this.cbxDisciplina.TabIndex = 10;
+            this.cbxDisciplina.SelectedIndexChanged += new System.EventHandler(this.cbxDisciplina_SelectedIndexChanged);
             // 
             // listQuestoes
             // 
@@ -191,7 +192,6 @@
             this.cbxMateria.Name = "cbxMateria";
             this.cbxMateria.Size = new System.Drawing.Size(159, 23);
             this.cbxMateria.TabIndex = 16;
-            
             // 
             // dtpData
             // 

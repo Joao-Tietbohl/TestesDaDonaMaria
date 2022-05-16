@@ -47,6 +47,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
                 txtNumero.Text = teste.Numero.ToString();
                 txtQtdQuestoes.Text = teste.QuantidadeQuestoes.ToString();
                 txtTitulo.Text = teste.Titulo;
+                
             }
         }
 

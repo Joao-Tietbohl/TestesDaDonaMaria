@@ -20,5 +20,13 @@ namespace TestesDaDonaMaria.Dominio
         {
             
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
     }
+
+   
 }
