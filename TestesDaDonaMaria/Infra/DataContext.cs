@@ -13,6 +13,7 @@ namespace TestesDaDonaMaria.Infra
 
         public DataContext()
         {
+            Testes = new List<Teste>();
             Questoes = new List<Questao>();
             Disciplinas = new List<Disciplina>();
             Materias = new List<Materia>();
@@ -29,6 +30,7 @@ namespace TestesDaDonaMaria.Infra
         public List<Questao> Questoes { get; set; }
         public List<Disciplina> Disciplinas { get; set; }
         public List <Materia> Materias { get; set; }
+        public List<Teste> Testes { get; set; }
 
         public void GravarDados()
         {
@@ -38,6 +40,9 @@ namespace TestesDaDonaMaria.Infra
         private void CarregarDados()
         {
             var ctx = serializador.CarregarDadosDoArquivo();
+
+            if (ctx.Testes.Any())
+                this.Testes.AddRange(ctx.Testes);
 
             if (ctx.Questoes.Any())
                 this.Questoes.AddRange(ctx.Questoes);

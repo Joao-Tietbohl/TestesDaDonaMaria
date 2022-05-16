@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using TestesDaDonaMaria.Infra;
 using TestesDaDonaMaria.Apresentacao.Compartilhado;
 using TestesDaDonaMaria.Apresentacao.ModuloMateria;
+using TestesDaDonaMaria.Apresentacao.ModuloQuestao;
+using TestesDaDonaMaria.Apresentacao.ModuloTeste;
 
 namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 {
@@ -34,12 +36,27 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
         {
             var repositorioDisciplina = new RepositorioDisciplina(contextoDados);
             var repositorioMateria = new RepositorioMateria(contextoDados);
+            var repositorioQuestao = new RepositorioQuestao(contextoDados);
+            var repositorioTeste = new RepositorioTeste(contextoDados);
 
 
             controladores = new Dictionary<string, ControladorBase>();
             controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
             controladores.Add("Materias", new ControladorMateria(repositorioMateria, repositorioDisciplina));
+            controladores.Add("Questoes", new ControladorQuestao(repositorioQuestao, repositorioDisciplina, repositorioMateria));
+            controladores.Add("Testes", new ControladorTeste(repositorioTeste, repositorioQuestao, repositorioDisciplina, repositorioMateria));
 
+        }
+
+        private void testesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarToolbox(new ConfiguracaoToolBoxTestes());
+
+            var opcaoSelecionada = (ToolStripMenuItem)sender;
+
+            SelecionarControlador(opcaoSelecionada);
+
+            CarregarListagem();
         }
 
         private void DisciplinasMenuItem_Click(object sender, EventArgs e)
@@ -57,6 +74,17 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
         {
 
             ConfigurarToolbox(new ConfiguracaoToolboxMateria());
+
+            var opcaoSelecionada = (ToolStripMenuItem)sender;
+
+            SelecionarControlador(opcaoSelecionada);
+
+            CarregarListagem();
+        }
+
+        private void questoesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarToolbox(new ConfiguracaoToolboxQuestao());
 
             var opcaoSelecionada = (ToolStripMenuItem)sender;
 

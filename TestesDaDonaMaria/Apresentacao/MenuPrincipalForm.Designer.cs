@@ -70,6 +70,7 @@
             this.testesToolStripMenuItem.Name = "testesToolStripMenuItem";
             this.testesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.testesToolStripMenuItem.Text = "Testes";
+            this.testesToolStripMenuItem.Click += new System.EventHandler(this.testesToolStripMenuItem_Click);
             // 
             // disciplinasToolStripMenuItem
             // 
@@ -90,9 +91,11 @@
             this.questoesToolStripMenuItem.Name = "questoesToolStripMenuItem";
             this.questoesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.questoesToolStripMenuItem.Text = "Questoes";
+            this.questoesToolStripMenuItem.Click += new System.EventHandler(this.questoesToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnInserir,
             this.btnEditar,
@@ -106,7 +109,7 @@
             // btnInserir
             // 
             this.btnInserir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnInserir.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInserir.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnInserir.Image = global::TestesDaDonaMaria.Properties.Resources.streamline_icon_add_circle_48x48;
             this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnInserir.Name = "btnInserir";

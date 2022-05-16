@@ -45,14 +45,18 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
             }
             set
             {
-                if (rbPrimeira.Checked == true)
-                    materia.Serie = Serie.Primeira;
-
-                if (rbSegunda.Checked == true)
-                    materia.Serie = Serie.Segunda;
-
-
                 materia = value;
+
+                if (materia.Serie != null)
+                {
+                    if (materia.Serie == Serie.Primeira)
+                        rbPrimeira.Checked = true;
+
+                    if (materia.Serie == Serie.Segunda)
+                        rbSegunda.Checked = true;
+                }
+
+                
                 txtNumero.Text = materia.Numero.ToString();
                 txtTitulo.Text = materia.Titulo; 
                 cbxDisciplina.SelectedItem = materia.Disciplina;

@@ -100,6 +100,7 @@
             // cbxDisciplina
             // 
             this.cbxDisciplina.DisplayMember = "Nome";
+            this.cbxDisciplina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDisciplina.FormattingEnabled = true;
             this.cbxDisciplina.Location = new System.Drawing.Point(94, 133);
             this.cbxDisciplina.Name = "cbxDisciplina";
