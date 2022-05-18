@@ -70,8 +70,11 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
 
         private void btnSortear_Click(object sender, EventArgs e)
         {
+
+
             listQuestoes.Items.Clear();
             
+           
             
             int qtdQuestoes = Convert.ToInt32(txtQtdQuestoes.Text);
             int cont = 0;
@@ -85,9 +88,19 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
 
             Materia materia = (Materia)cbxMateria.SelectedItem;
 
-            List<Questao> questoesFiltroMateria = repositorioQuestao.SelecionarTodosPorMateria(repositorioQuestao.SelecionarTodos(), materia);
 
-            while (cont < qtdQuestoes)
+            List <Questao> questoesFiltroMateria = repositorioQuestao.SelecionarTodosPorMateria(repositorioQuestao.SelecionarTodos(), materia);
+
+            if (qtdQuestoes > questoesFiltroMateria.Count){
+                
+                MessageBox.Show("Não existem questões suficientes cadastradas",
+                           "Cadastro de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+      
+            }
+            
+
+                while (cont < qtdQuestoes)
             {
 
                 int index = random.Next(questoesFiltroMateria.Count);
