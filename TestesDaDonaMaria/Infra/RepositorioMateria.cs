@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +22,12 @@ namespace TestesDaDonaMaria.Infra
         {
             return dataContext.Materias;
         }
+
+        public override AbstractValidator<Materia> ObterValidador()
+        {
+            return new ValidadorMateria();
+        }
+
+      
     }
 }

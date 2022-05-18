@@ -23,7 +23,7 @@ namespace TestesDaDonaMaria.Dominio
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"Título: {Titulo}, Disciplina: {Disciplina}, Matéria: {Materia}, Qtd questões: {QuantidadeQuestoes}";
         }
 
     }

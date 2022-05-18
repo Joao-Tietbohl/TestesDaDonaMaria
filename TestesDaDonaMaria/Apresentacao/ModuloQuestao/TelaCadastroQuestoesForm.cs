@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using FluentValidation.Results;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
         
 
         IDictionary<int, string> Letras = new Dictionary<int, string>();
-        
+
+        public Func<Questao, ValidationResult> GravarRegistro { get; set; }
+
 
         public TelaCadastroQuestoesForm(RepositorioDisciplina repositorioDisciplina, RepositorioMateria repositorioMateria)
         {
@@ -84,6 +87,19 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
             questao.Enunciado = txtEnunciado.Text;
             questao.Materia = (Materia)cbxMateria.SelectedItem;
 
+
+            var resultadoValidacao = GravarRegistro(questao);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                MessageBox.Show(erro,
+                       "Cadastro de Questoes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+                DialogResult = DialogResult.None;
+            }
         }
 
         private void cbxDisciplina_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,6 +149,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
             txtAlternativa.Clear();
 
             questao.Alternativas.Add(alternativa);
+
         }
     }
 }

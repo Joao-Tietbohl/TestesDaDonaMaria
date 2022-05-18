@@ -38,11 +38,13 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
             tela.Materia = materiaSelecionada;
 
+           tela.GravarRegistro = repositorioMateria.Editar;
+
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                repositorioMateria.Editar(tela.Materia);
+               
                 CarregarMaterias();
             }
         }
@@ -78,14 +80,16 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
         public override void Inserir()
         {
             TelaCadastroMateriaForm tela = new TelaCadastroMateriaForm(repositorioDisciplina);
+           
             tela.Materia = new Materia();
+
+            tela.GravarRegistro = repositorioMateria.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                repositorioMateria.Inserir(tela.Materia);
-
+                if(tela.Materia.Disciplina != null)
                 AtualizarDisciplina(tela.Materia);
 
                 CarregarMaterias();
@@ -107,5 +111,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
             return listagemMaterias;
         }
+
+      
     }
 }

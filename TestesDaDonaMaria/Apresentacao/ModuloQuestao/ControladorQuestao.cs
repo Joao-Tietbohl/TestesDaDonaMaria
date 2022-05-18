@@ -41,11 +41,12 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
 
             tela.Questao = questaoSelecionada;
 
+            tela.GravarRegistro = repositorioQuestao.Editar;
+
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                repositorioQuestao.Editar(tela.Questao);
                 CarregarQuestoes();
             }
         }
@@ -75,13 +76,15 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
         public override void Inserir()
         {
             TelaCadastroQuestoesForm tela = new TelaCadastroQuestoesForm(repositorioDisciplina, repositorioMateria);
+            
             tela.Questao = new Questao();
+
+            tela.GravarRegistro = repositorioQuestao.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                repositorioQuestao.Inserir(tela.Questao);
 
                 CarregarQuestoes();
             }

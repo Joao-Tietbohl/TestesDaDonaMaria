@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,11 @@ namespace TestesDaDonaMaria.Infra
         public override List<Questao> ObterRegistros()
         {
             return dataContext.Questoes;
+        }
+
+        public override AbstractValidator<Questao> ObterValidador()
+        {
+            return new ValidadorQuestao();
         }
 
         public List<Questao> SelecionarTodosPorMateria(List<Questao>registros ,Materia materia)

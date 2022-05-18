@@ -15,5 +15,9 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
         public override string TooltipExcluir { get { return "Excluir uma matéria existente"; } }
 
+        public override bool DuplicarHabilitado => false;
+
+        public override bool GerarPDFHabilitado => false;
+
     }
 }

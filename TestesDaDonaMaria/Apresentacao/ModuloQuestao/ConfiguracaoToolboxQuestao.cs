@@ -14,6 +14,10 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
         public override string TooltipEditar { get { return "Editar uma questão existente"; } }
 
         public override string TooltipExcluir { get { return "Excluir uma questão existente"; } }
+
+        public override bool DuplicarHabilitado => false;
+
+        public override bool GerarPDFHabilitado => false;
     }
 }
 

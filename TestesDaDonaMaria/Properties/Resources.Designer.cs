@@ -83,6 +83,36 @@ namespace TestesDaDonaMaria.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap streamline_icon_duplicate_file_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("streamline-icon-duplicate-file@48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap streamline_icon_office_file_pdf_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("streamline-icon-office-file-pdf@48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap streamline_icon_office_file_pdf_48x481 {
+            get {
+                object obj = ResourceManager.GetObject("streamline-icon-office-file-pdf@48x481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap streamline_icon_pencil_2_48x48 {
             get {
                 object obj = ResourceManager.GetObject("streamline-icon-pencil-2@48x48", resourceCulture);

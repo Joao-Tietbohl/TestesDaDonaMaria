@@ -32,25 +32,17 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
                 "Edição de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
+           
             TelaCadastroDisciplinaForm tela = new TelaCadastroDisciplinaForm();
 
             tela.Disciplina = disciplinaSelecionada;
 
+            tela.GravarRegistro = repositorioDisciplina.Editar;
+
             DialogResult resultado = tela.ShowDialog();
-
-            string validacao = ValidarDisciplina(tela.Disciplina);
-
-            if (validacao != "")
-            {
-                MessageBox.Show(validacao,
-                "Cadastro de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
 
             if (resultado == DialogResult.OK)
             {
-                repositorioDisciplina.Editar(tela.Disciplina);
                 CarregarDisciplinas();
             }
         }
@@ -99,42 +91,20 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
         public override void Inserir()
         {
             TelaCadastroDisciplinaForm tela = new TelaCadastroDisciplinaForm();
+            
             tela.Disciplina = new Disciplina();
+
+            tela.GravarRegistro = repositorioDisciplina.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
-            string validacao = ValidarDisciplina(tela.Disciplina);
-
-            if (validacao != "")
-            {
-                MessageBox.Show(validacao,
-                "Cadastro de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
             if (resultado == DialogResult.OK)
             {
-                repositorioDisciplina.Inserir(tela.Disciplina);
-
                 CarregarDisciplinas();
             }
         }
 
-        private string ValidarDisciplina(Disciplina disciplina)
-        {
-            string validacao = "";
-
-            if (disciplina.Nome == "")
-                validacao = "Disciplina deve ter nome";
-
-            foreach (Disciplina d in repositorioDisciplina.SelecionarTodos())
-            {
-                if (disciplina.Nome == d.Nome)
-                    validacao += "\nNome da disciplina deve ser único";
-            }
-            
-            return validacao;
-        }
+       
 
         private void CarregarDisciplinas()
         {

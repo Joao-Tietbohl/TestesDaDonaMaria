@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,11 @@ namespace TestesDaDonaMaria.Infra
         public override List<Teste> ObterRegistros()
         {
             return dataContext.Testes;
+        }
+
+        public override AbstractValidator<Teste> ObterValidador()
+        {
+            return new ValidadorTeste();
         }
     }
 }

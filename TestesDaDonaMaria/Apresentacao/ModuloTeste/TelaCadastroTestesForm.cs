@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,8 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
         private RepositorioDisciplina repositorioDisciplina;
         private RepositorioQuestao repositorioQuestao;
 
+        List<Questao> questoes;
+
         public TelaCadastroTestesForm(RepositorioMateria repositorioMateria, RepositorioQuestao repositorioQuestao,RepositorioDisciplina repositorioDisciplina)
         {
             InitializeComponent();
@@ -32,6 +35,8 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
            
 
         }
+
+        public Func<Teste, ValidationResult> GravarRegistro { get; set; }
 
         public Teste Teste
         {
@@ -47,6 +52,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
                 txtNumero.Text = teste.Numero.ToString();
                 txtQtdQuestoes.Text = teste.QuantidadeQuestoes.ToString();
                 txtTitulo.Text = teste.Titulo;
+
                 
             }
         }
@@ -64,12 +70,16 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
 
         private void btnSortear_Click(object sender, EventArgs e)
         {
+            listQuestoes.Items.Clear();
+            
+            
             int qtdQuestoes = Convert.ToInt32(txtQtdQuestoes.Text);
             int cont = 0;
 
             var random = new Random();
 
-           //   List<Questao> questoesProva = new List<Questao>();
+            //   List<Questao> questoesProva = new List<Questao>();
+            questoes = new List<Questao>();
 
             List<int> indexNumeros = new List<int>();
 
@@ -87,13 +97,19 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
 
                     indexNumeros.Add(index);
 
-                    listQuestoes.Items.Add(questoesFiltroMateria[index]);
+              
+                    questoes.Add(questoesFiltroMateria[index]);
 
                     //questoesProva.Add(repositorioQuestao.SelecionarTodos()[index]);
 
                     cont++;
                 }
 
+            }
+
+            foreach (var a in questoes)
+            {
+                listQuestoes.Items.Add(a);
             }
 
            // GerarGabarito(questoesProva);
@@ -114,6 +130,20 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
             teste.Materia = (Materia)cbxMateria.SelectedItem;
             teste.DataGeracao = Convert.ToDateTime(dtpData.Text);
             teste.Titulo = txtTitulo.Text;
+            teste.listaQuestoes = questoes;
+
+            var resultadoValidacao = GravarRegistro(teste);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                MessageBox.Show(erro,
+                       "Cadastro de Testes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+                DialogResult = DialogResult.None;
+            }
         }
 
        

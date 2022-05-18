@@ -95,16 +95,28 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 
         private void btInserir_Click(object sender, EventArgs e)
         {
+            if (controlador == null)
+            {
+                return;
+            }
             controlador.Inserir();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            if (controlador == null)
+            {
+                return;
+            }
             controlador.Editar();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            if (controlador == null)
+            {
+                return;
+            }
             controlador.Excluir();
         }
 
@@ -148,6 +160,24 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
             
         }
 
-       
+        private void btnDuplicar_Click(object sender, EventArgs e)
+        {
+                if (controlador == null)
+                {
+                    return;
+                }
+            ((ControladorTeste)controlador).Duplicar();
+            
+ 
+        }
+
+        private void btnGerarPDF_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                return;
+            }
+            ((ControladorTeste)controlador).GerarPdf();
+        }
     }
 }

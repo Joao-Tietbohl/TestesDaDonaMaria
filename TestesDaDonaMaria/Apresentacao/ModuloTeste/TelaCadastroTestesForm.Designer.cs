@@ -136,6 +136,7 @@
             // 
             // listQuestoes
             // 
+            this.listQuestoes.DisplayMember = "Enunciado";
             this.listQuestoes.FormattingEnabled = true;
             this.listQuestoes.ItemHeight = 15;
             this.listQuestoes.Location = new System.Drawing.Point(17, 315);

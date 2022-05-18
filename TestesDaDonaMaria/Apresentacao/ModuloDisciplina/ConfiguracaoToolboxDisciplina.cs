@@ -14,5 +14,10 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
         public override string TooltipEditar { get { return "Editar uma disciplina existente"; } }
 
         public override string TooltipExcluir { get { return "Excluir uma disciplina existente"; } }
+
+        public override bool DuplicarHabilitado => false;
+
+        public override bool GerarPDFHabilitado => false;
+
     }
 }

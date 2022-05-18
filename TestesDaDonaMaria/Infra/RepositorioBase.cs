@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,43 +22,61 @@ namespace TestesDaDonaMaria.Infra
 
         public abstract List<T> ObterRegistros();
 
+        public abstract AbstractValidator<T> ObterValidador();
 
-
-        public void Inserir(T novoRegistro)
+        public virtual ValidationResult Inserir(T novoRegistro)
         {
 
-            novoRegistro.Numero = ++contador;
+            var validator = ObterValidador();
 
-            var registros = ObterRegistros();
+            var resultadoValidacao = validator.Validate(novoRegistro);
 
-            registros.Add(novoRegistro);
+            if (resultadoValidacao.IsValid)
+            {
+                novoRegistro.Numero = ++contador;
 
+                var registros = ObterRegistros();
 
+                registros.Add(novoRegistro);
+            }
+
+            return resultadoValidacao;
         }
 
-        public void Editar(T registro)
+        public ValidationResult Editar(T registro)
         {
-            var registros = ObterRegistros();
+            var validator = ObterValidador();
 
-            foreach (var item in registros)
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid)
             {
-                if (item.Numero == registro.Numero)
+                var registros = ObterRegistros();
+
+                foreach (var item in registros)
                 {
-                    item.Atualizar(registro);
-                    break;
+                    if (item.Numero == registro.Numero)
+                    {
+                        item.Atualizar(registro);
+                        break;
+                    }
                 }
             }
+            
+            return resultadoValidacao;
+
         }
 
-
-
-        public void Excluir(T registro)
+        public ValidationResult Excluir(T registro)
         {
+            var resultadoValidacao = new ValidationResult();
 
             var registros = ObterRegistros();
 
-            registros.Remove(registro);
+            if (registros.Remove(registro) == false)
+                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não foi possível remover o registro"));
 
+            return resultadoValidacao;
         }
 
         public virtual List<T> SelecionarTodos()

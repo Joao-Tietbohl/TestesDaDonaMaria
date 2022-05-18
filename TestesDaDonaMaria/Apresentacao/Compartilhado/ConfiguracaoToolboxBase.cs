@@ -15,6 +15,9 @@ namespace TestesDaDonaMaria.Apresentacao.Compartilhado
 
             public abstract string TooltipExcluir { get; }
 
+            public virtual string TooltipDuplicar { get; }
+            
+            public virtual string TooltipGerarPDF { get; }
            
 
 
@@ -23,6 +26,10 @@ namespace TestesDaDonaMaria.Apresentacao.Compartilhado
             public virtual bool EditarHabilitado { get { return true; } }
 
             public virtual bool ExcluirHabilitado { get { return true; } }
+
+            public virtual bool DuplicarHabilitado { get { return true; } }
+            
+            public virtual bool GerarPDFHabilitado { get { return true; } }
 
          
     }

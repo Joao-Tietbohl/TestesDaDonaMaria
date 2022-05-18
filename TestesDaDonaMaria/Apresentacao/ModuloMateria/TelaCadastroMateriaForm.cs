@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using FluentValidation.Results;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,6 +10,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestesDaDonaMaria.Dominio;
 using TestesDaDonaMaria.Infra;
+
+/*using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using FluentValidation.Results;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TestesDaDonaMaria.Dominio;*/
 
 namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 {
@@ -30,6 +43,8 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
                 InicializarCbx(listaDisciplinas);
             
         }
+
+        public Func<Materia, ValidationResult> GravarRegistro { get; set; }
 
         private void InicializarCbx(List<Disciplina> listaDisciplinas)
         {
@@ -73,8 +88,21 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
             if (rbSegunda.Checked == true)
                 materia.Serie = Serie.Segunda;
 
+
+
+            var resultadoValidacao = GravarRegistro(materia);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                MessageBox.Show(erro,
+                       "Cadastro de Materias", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+                DialogResult = DialogResult.None;
+            }
         }
 
-       
     }
 }

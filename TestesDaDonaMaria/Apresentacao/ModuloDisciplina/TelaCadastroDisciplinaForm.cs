@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using FluentValidation.Results;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
     public partial class TelaCadastroDisciplinaForm : Form
     {
         private Disciplina disciplina;
+       
+        public Func<Disciplina, ValidationResult> GravarRegistro { get; set; }
 
         public TelaCadastroDisciplinaForm()
         {
             InitializeComponent();
+
         }
 
         public Disciplina Disciplina
@@ -37,6 +41,19 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             disciplina.Nome = txtNome.Text;
+
+            var resultadoValidacao = GravarRegistro(disciplina);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                MessageBox.Show(erro,
+               "Cadastro de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                 return;
+
+                DialogResult = DialogResult.None;
+            }
 
         }
     }

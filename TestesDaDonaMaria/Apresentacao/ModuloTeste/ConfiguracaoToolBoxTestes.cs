@@ -14,5 +14,9 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloTeste
         public override string TooltipEditar { get { return "Editar um teste existente"; } }
 
         public override string TooltipExcluir { get { return "Excluir um teste existente"; } }
+
+        public override bool DuplicarHabilitado => true;
+
+        public override bool GerarPDFHabilitado => true;
     }
 }
