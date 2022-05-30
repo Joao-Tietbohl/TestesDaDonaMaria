@@ -1,5 +1,7 @@
 using System;
+using System.Data;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,6 +12,11 @@ namespace TestesDaDonaMaria.Apresentacao
 {
     public static class Program
     {
+
+        static string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=DonaMaria;Integrated Security=True;Pooling=False";
+
+        static SqlConnection conexaoComBanco = new SqlConnection();
+       
         static Serializador serializador = new Serializador();
 
         static DataContext contexto = new DataContext(serializador);
@@ -20,6 +27,10 @@ namespace TestesDaDonaMaria.Apresentacao
         [STAThread]
         static void Main()
         {
+            
+            conexaoComBanco.ConnectionString = connectionString;
+            conexaoComBanco.Open();
+
             AppDomain.CurrentDomain.UnhandledException +=
                 new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 

@@ -1,0 +1,7 @@
+﻿UPDATE [TBDISCIPLINA]
+	SET			
+		[NOME] = @NOME
+
+	WHERE 
+		[NUMERO] = @NUMERO
+

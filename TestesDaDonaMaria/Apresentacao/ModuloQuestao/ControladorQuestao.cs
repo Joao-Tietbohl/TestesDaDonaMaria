@@ -92,7 +92,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
 
         private void CarregarQuestoes()
         {
-            var questoes = repositorioQuestao.ObterRegistros();
+            var questoes = repositorioQuestao.SelecionarTodos();
 
             listagemQuestao.AtualizarRegistros(questoes);
         }

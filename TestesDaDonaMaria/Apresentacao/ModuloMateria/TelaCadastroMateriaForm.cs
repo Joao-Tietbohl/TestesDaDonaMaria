@@ -73,14 +73,14 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
                 
                 txtNumero.Text = materia.Numero.ToString();
-                txtTitulo.Text = materia.Titulo; 
+                txtTitulo.Text = materia.Nome; 
                 cbxDisciplina.SelectedItem = materia.Disciplina;
             }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            materia.Titulo = txtTitulo.Text;
+            materia.Nome = txtTitulo.Text;
             materia.Disciplina = (Disciplina)cbxDisciplina.SelectedItem; 
             if (rbPrimeira.Checked == true)
                 materia.Serie = Serie.Primeira;

@@ -29,7 +29,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
             List<Materia> listaOrdemAlfabetica = lista;
             
-            listaOrdemAlfabetica.Sort((x, y) => string.Compare(x.Titulo, y.Titulo));
+            listaOrdemAlfabetica.Sort((x, y) => string.Compare(x.Nome, y.Nome));
             
             foreach (Materia m in listaOrdemAlfabetica)
             {

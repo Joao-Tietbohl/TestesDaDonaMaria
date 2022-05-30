@@ -40,6 +40,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+            disciplina.Numero = Int32.Parse(txtNumero.Text);
             disciplina.Nome = txtNome.Text;
 
             var resultadoValidacao = GravarRegistro(disciplina);

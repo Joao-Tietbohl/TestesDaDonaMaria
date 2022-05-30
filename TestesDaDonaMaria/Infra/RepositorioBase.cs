@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace TestesDaDonaMaria.Infra
     public abstract class RepositorioBase<T> where T : EntidadeBase<T>
     {
         protected DataContext dataContext;
-
+       
         protected int contador = 0;
 
         public RepositorioBase(DataContext dataContext)
@@ -26,7 +27,7 @@ namespace TestesDaDonaMaria.Infra
 
         public virtual ValidationResult Inserir(T novoRegistro)
         {
-
+          
             var validator = ObterValidador();
 
             var resultadoValidacao = validator.Validate(novoRegistro);
@@ -43,7 +44,7 @@ namespace TestesDaDonaMaria.Infra
             return resultadoValidacao;
         }
 
-        public ValidationResult Editar(T registro)
+        public virtual ValidationResult Editar(T registro)
         {
             var validator = ObterValidador();
 
@@ -67,7 +68,7 @@ namespace TestesDaDonaMaria.Infra
 
         }
 
-        public ValidationResult Excluir(T registro)
+        public virtual ValidationResult Excluir(T registro)
         {
             var resultadoValidacao = new ValidationResult();
 

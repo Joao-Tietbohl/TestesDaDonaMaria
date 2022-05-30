@@ -19,7 +19,7 @@ namespace TestesDaDonaMaria.Dominio
             RuleFor(x => x.Serie)
             .NotEmpty().NotNull();
 
-           RuleFor(x => x.Titulo)
+           RuleFor(x => x.Nome)
            .NotEmpty().NotNull();
             
         }

@@ -24,18 +24,18 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 
         public override void Editar()
         {
-            Disciplina disciplinaSelecionada = listagemDisciplinas.ObtemDisciplinaSelecionada();
+            Disciplina disciplinaSelecionada = ObtemDisciplinaSelecionada();
 
             if (disciplinaSelecionada == null)
             {
-                MessageBox.Show("Selecione uma disciplina primeiro",
-                "Edição de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um contato primeiro",
+                "Edição de Contatos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-           
+
             TelaCadastroDisciplinaForm tela = new TelaCadastroDisciplinaForm();
 
-            tela.Disciplina = disciplinaSelecionada;
+            tela.Disciplina = disciplinaSelecionada.Clonar();
 
             tela.GravarRegistro = repositorioDisciplina.Editar;
 
@@ -47,23 +47,21 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
             }
         }
 
+        private Disciplina ObtemDisciplinaSelecionada()
+        {
+            var numero = listagemDisciplinas.ObtemDisciplinaSelecionada().Numero;
+
+            return repositorioDisciplina.SelecionarPorNumero(numero);
+        }
+
         public override void Excluir()
         {
-            Disciplina disciplinaSelecionada = listagemDisciplinas.ObtemDisciplinaSelecionada();
+            Disciplina disciplinaSelecionada = ObtemDisciplinaSelecionada();
 
             if (disciplinaSelecionada == null)
             {
                 MessageBox.Show("Selecione uma disciplina primeiro",
                 "Exclusão de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            string validacao = ValidarExclusao(disciplinaSelecionada);
-
-            if(validacao != "")
-            {
-                MessageBox.Show(validacao,
-                "Exclusao de Disciplinas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -108,7 +106,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloDisciplina
 
         private void CarregarDisciplinas()
         {
-            var disciplinas = repositorioDisciplina.ObterRegistros();
+            var disciplinas = repositorioDisciplina.SelecionarTodos();
 
             listagemDisciplinas.AtualizarRegistros(disciplinas);
         }

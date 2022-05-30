@@ -25,7 +25,7 @@ namespace TestesDaDonaMaria.Dominio
 
         public override string ToString()
         {
-            return $"Enunciado: {Enunciado}, Materia: {Materia.Titulo}";
+            return $"Enunciado: {Enunciado}, Materia: {Materia.Nome}";
         }
 
     }

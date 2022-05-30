@@ -28,15 +28,15 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
         public TelaCadastroQuestoesForm(RepositorioDisciplina repositorioDisciplina, RepositorioMateria repositorioMateria)
         {
             InitializeComponent();
-
+     
             this.repositorioMateria = repositorioMateria;
             this.repositorioDisciplina = repositorioDisciplina;
-
+        
             InicializarCbxDisciplina(repositorioDisciplina);
             cbxMateria.Enabled = false;
-
+        
             InicializarDicionario();
-
+     
             questao = new Questao();
 
         }
@@ -63,10 +63,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloQuestao
                 txtEnunciado.Text = questao.Enunciado;
                 cbxMateria.SelectedItem = questao.Materia;
                 cbxDisciplina.SelectedItem = questao.Materia;
-                foreach (var a in questao.Alternativas)
-                {
-                    lbAlternativas.Items.Add(a);
-                }
+              
             }
         }
 

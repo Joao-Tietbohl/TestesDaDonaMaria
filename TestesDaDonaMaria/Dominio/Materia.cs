@@ -4,7 +4,7 @@ namespace TestesDaDonaMaria.Dominio
 {
     public class Materia : EntidadeBase<Materia>
     {
-        public string Titulo { get; set; }
+        public string Nome { get; set; }
         public Serie? Serie { get; set; }
         public Disciplina Disciplina { get; set; }
         public List<Questao> Questoes { get; set; }
@@ -16,7 +16,7 @@ namespace TestesDaDonaMaria.Dominio
 
         public override string ToString()
         {
-            return $"Disciplina: {Disciplina.Nome},  Título: {Titulo}, Série: {Serie}";
+            return $"Disciplina: {Disciplina.Nome},  Título: {Nome}, Série: {Serie}";
         }
     }
 

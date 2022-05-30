@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TestesDaDonaMaria.Dominio
 {
@@ -23,11 +24,16 @@ namespace TestesDaDonaMaria.Dominio
             if (Materias != null)
             {
                 foreach (var materia in Materias)
-                    materiasToString += materia.Titulo + ", ";
+                    materiasToString += materia.Nome + ", ";
             }
             
             
             return $"Número: {Numero}, Nome: {Nome}";
+        }
+
+        internal Disciplina Clonar()
+        {
+            return MemberwiseClone() as Disciplina;
         }
     }
 }

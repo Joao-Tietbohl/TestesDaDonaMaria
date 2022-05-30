@@ -25,7 +25,7 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
         public override void Editar()
         {
-            Materia materiaSelecionada = listagemMaterias.ObtemMateriaSelecionada();
+            Materia materiaSelecionada = ObtemMateriaSelecionada();
 
             if (materiaSelecionada == null)
             {
@@ -51,14 +51,14 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
 
         private void CarregarMaterias()
         {
-            var materias = repositorioMateria.ObterRegistros();
+            var materias = repositorioMateria.SelecionarTodos();
 
             listagemMaterias.AtualizarRegistros(materias);
         }
 
         public override void Excluir()
         {
-            Materia materiaSelecionada = listagemMaterias.ObtemMateriaSelecionada();
+            Materia materiaSelecionada = ObtemMateriaSelecionada();
 
             if (materiaSelecionada == null)
             {
@@ -75,6 +75,13 @@ namespace TestesDaDonaMaria.Apresentacao.ModuloMateria
                 repositorioMateria.Excluir(materiaSelecionada);
                 CarregarMaterias();
             }
+        }
+
+        private Materia ObtemMateriaSelecionada()
+        {
+            var numero = listagemMaterias.ObtemMateriaSelecionada().Numero;
+
+            return repositorioMateria.SelecionarPorNumero(numero);
         }
 
         public override void Inserir()
